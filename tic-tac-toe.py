@@ -68,12 +68,39 @@ def check_if_game_over():
 
 
 def check_for_winner():
+  
+  #set global winner
+  global winner
+
   #check rows
+  row_winner = check_rows()
+
   #check collums
+  column_winner = check_columns()
+
   #check diagonals
+  diagonal_winner = check_diagonals()
+
+  if row_winner:
+    winner = row_winner()
+
+  elif column_winner:
+    winner = column_winner()
+
+  elif diagonal_winner:
+    winner = diagonal_winner()
+
+  else:
+    winner = None
+
+
   return
 
+
+
+
 def check_rows():
+  
   return
 
 def check_columns():
