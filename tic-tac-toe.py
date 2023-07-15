@@ -46,11 +46,11 @@ def play_game():
     flip_player()
     
 
-    #The game has ended
-    if winner == "X" or winner == "O":
-        print(winner + " won!")
-    elif winner == None: 
-        print("Tie")
+  #The game has ended
+  if winner == "X" or winner == "O":
+      print(winner + " won!")
+  elif not winner: 
+      print("Tie")
 
 
 
@@ -80,13 +80,13 @@ def check_for_winner():
   global winner
 
   #check rows
-  row_winner = check_rows
+  row_winner = check_rows()
 
-  #check collums
-  column_winner = check_columns
+  #check columns
+  column_winner = check_columns()
 
   #check diagonals
-  diagonal_winner = check_diagonals
+  diagonal_winner = check_diagonals()
 
   if row_winner:
     winner = row_winner
@@ -131,9 +131,9 @@ def check_columns():
    #set up global variables
   global game_still_going
   #check if any of the columns have the same value and aren't empty
-  column_1 = board[0] = board[3] == board[6] != "-"
-  column_2 = board[1] = board[4] == board[7] != "-"
-  column_3 = board[2] = board[5] == board[8] != "-"
+  column_1 = board[0] == board[3] == board[6] != "-"
+  column_2 = board[1] == board[4] == board[7] != "-"
+  column_3 = board[2] == board[5] == board[8] != "-"
   #if any column has a match, flag that there is a win
   if column_1 or column_2 or column_3:
     game_still_going = False
@@ -152,8 +152,8 @@ def check_diagonals():
    #set up global variables
   global game_still_going
   #check if any of the diagonals have the same value and aren't empty
-  diagonal_1 = board[0] = board[4] == board[8] != "-"
-  diagonal_2 = board[6] = board[4] == board[2] != "-"
+  diagonal_1 = board[0] == board[4] == board[8] != "-"
+  diagonal_2 = board[6] == board[4] == board[2] != "-"
   
   #if any diagonal has a match flag that there is a win
   if diagonal_1 or diagonal_2:
@@ -168,10 +168,13 @@ def check_diagonals():
 
 
 def check_if_tie():
-  #
-  #
-  #
-  return
+  #global varible
+  global game_still_going
+  #check if all squares have been played
+  if "-" not in board:
+    game_still_going = False
+
+
 
 
 def flip_player():
@@ -187,20 +190,6 @@ def flip_player():
 
 
 
-
 play_game()
 
 
-
-
-
-#board
-#display board
-#play game
-#handle turn
-#check win
-  #check rows
-  #check collumns
-  #check diaganols
-#check tie
-#flip player
